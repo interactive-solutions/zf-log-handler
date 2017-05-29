@@ -1,0 +1,13 @@
+{
+  "name": "interactive-solutions/error-handler",
+  "type": "Error handler",
+  "description": "Interactive Solutions error handler",
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.0.0",
+    "ruflin/elastica": "~5.2"
+  },
+  "classmap": [
+    "./Module.php"
+  ]
+}
