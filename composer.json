@@ -1,6 +1,5 @@
 {
   "name": "interactive-solutions/zf-log-handler",
-  "type": "logger",
   "description": "Interactive Solutions log handler",
   "minimum-stability": "dev",
   "require": {
