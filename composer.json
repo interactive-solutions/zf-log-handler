@@ -1,7 +1,7 @@
 {
-  "name": "interactive-solutions/error-handler",
-  "type": "Error handler",
-  "description": "Interactive Solutions error handler",
+  "name": "interactive-solutions/log-handler",
+  "type": "Log handler",
+  "description": "Interactive Solutions log handler",
   "minimum-stability": "dev",
   "require": {
     "php": "^7.0.0",
