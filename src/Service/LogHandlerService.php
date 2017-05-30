@@ -13,6 +13,8 @@ use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
 use Throwable;
 use Zend\Http\Request;
 use Zend\Http\Response;
+use Zend\Json\Exception\RuntimeException;
+use Zend\Json\Json;
 use Zend\Mvc\Router\RouteMatch;
 use Exception;
 
@@ -66,7 +68,9 @@ final class LogHandlerService implements LogHandlerServiceInterface
         foreach ($this->getAdapters() as $adapter) {
             try {
                 $adapter->write($data, 'errors');
-            } catch (Exception $e) {/*do nothing*/}
+            } catch (Exception $e) {
+                // Prevent application from crashing
+            }
         }
     }
 
@@ -81,11 +85,13 @@ final class LogHandlerService implements LogHandlerServiceInterface
                     'headers' => $request->getHeaders()->toArray(),
                     'url'     => $request->getUriString(),
                     'body'    => $request->getContent(),
+                    'json'    => $this->getJsonFromBody($request->getContent()),
                     'query'   => $request->getQuery()->toArray(),
                 ],
                 'response' => [
                     'headers'    => $response->getHeaders()->toArray(),
                     'body'       => $response->getContent(),
+                    'json'       => $this->getJsonFromBody($response->getContent()),
                     'statusCode' => $response->getStatusCode(),
                 ],
             ];
@@ -94,7 +100,9 @@ final class LogHandlerService implements LogHandlerServiceInterface
             foreach ($this->adapters as $adapter) {
                 try {
                     $adapter->write($data, 'http-access-log');
-                } catch (Exception $e) {/*do nothing*/}
+                } catch (Exception $e) {
+                    // To prevent application from crashing
+                }
             }
         }
     }
@@ -105,6 +113,21 @@ final class LogHandlerService implements LogHandlerServiceInterface
     public function getAdapters(): array
     {
         return $this->adapters;
+    }
+
+    /**
+     * Json decode a string if possible
+     *
+     * @param string $string
+     * @return array|mixed
+     */
+    private function getJsonFromBody(string $string)
+    {
+        try {
+            return Json::decode($string, Json::TYPE_ARRAY);
+        } catch (RuntimeException $e) {
+            return [];
+        }
     }
 
     /**

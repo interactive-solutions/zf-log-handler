@@ -46,5 +46,7 @@ final class ElasticsearchAdapter extends AbstractAdapter
         $document->setData($data);
 
         $type->addDocument($document);
+
+        return true;
     }
 }

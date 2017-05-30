@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace InteractiveSolutions\LogHandler\Listener;
 
 use InteractiveSolutions\LogHandler\Service\LogHandlerServiceInterface;
+use Throwable;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
 use Zend\EventManager\ListenerAggregateTrait;
@@ -47,6 +48,8 @@ final class ErrorListener implements ListenerAggregateInterface
      */
     public function handleErrorData(MvcEvent $event)
     {
-        $this->service->handleException($event->getParam('exception'));
+        if ($event->getParam('exception') instanceof Throwable) {
+            $this->service->handleException($event->getParam('exception'));
+        }
     }
 }
