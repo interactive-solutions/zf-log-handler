@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\ErrorHandler\Factory\Client;
+namespace InteractiveSolutions\LogHandler\Factory\Client;
 
 use Elastica\Client;
 use Interop\Container\ContainerInterface;

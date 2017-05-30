@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\ErrorHandler\Adapter;
+namespace InteractiveSolutions\LogHandler\Adapter;
 
 abstract class AbstractAdapter implements AdapterInterface
 {
-    abstract public function write(array $data): bool;
+    abstract public function write(array $data, string $type = null): bool;
 }

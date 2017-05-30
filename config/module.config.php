@@ -1,19 +1,31 @@
 <?php
 
 use Elastica\Client;
-use InteractiveSolutions\ErrorHandler\Adapter\ElasticsearchAdapter;
-use InteractiveSolutions\ErrorHandler\Factory\Adapter\ElasticsearchAdapterFactory;
-use InteractiveSolutions\ErrorHandler\Factory\Client\ElasticaClientFactory;
-use InteractiveSolutions\ErrorHandler\Factory\Service\ErrorHandlerServiceFactory;
-use InteractiveSolutions\ErrorHandler\Service\ErrorHandlerService;
+use InteractiveSolutions\LogHandler\Adapter\ElasticsearchAdapter;
+use InteractiveSolutions\LogHandler\Factory\Adapter\ElasticsearchAdapterFactory;
+use InteractiveSolutions\LogHandler\Factory\Client\ElasticaClientFactory;
+use InteractiveSolutions\LogHandler\Factory\Listener\RequestResponseDataListenerFactory;
+use InteractiveSolutions\LogHandler\Factory\Options\ElasticsearchOptionsFactory;
+use InteractiveSolutions\LogHandler\Factory\Options\LogHandlerOptionsFactory;
+use InteractiveSolutions\LogHandler\Factory\Service\LogHandlerServiceFactory;
+use InteractiveSolutions\LogHandler\Listener\RequestResponseDataListener;
+use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
+use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
+use InteractiveSolutions\LogHandler\Service\LogHandlerService;
 
 return [
     'service_manager' => [
         'factories' => [
-            ElasticsearchAdapter::class => ElasticsearchAdapterFactory::class,
-            ErrorHandlerService::class => ErrorHandlerServiceFactory::class,
+            RequestResponseDataListener::class => RequestResponseDataListenerFactory::class,
 
-            Client::class => ElasticaClientFactory::class
+            ElasticsearchAdapter::class => ElasticsearchAdapterFactory::class,
+
+            LogHandlerService::class => LogHandlerServiceFactory::class,
+
+            Client::class => ElasticaClientFactory::class,
+
+            LogHandlerOptions::class    => LogHandlerOptionsFactory::class,
+            ElasticsearchOptions::class => ElasticsearchOptionsFactory::class,
         ],
     ],
 ];

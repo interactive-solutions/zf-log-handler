@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\ErrorHandler\Factory\Adapter;
+namespace InteractiveSolutions\LogHandler\Factory\Adapter;
 
 use Elastica\Client;
-use InteractiveSolutions\ErrorHandler\Adapter\ElasticsearchAdapter;
+use InteractiveSolutions\LogHandler\Adapter\ElasticsearchAdapter;
 use Interop\Container\ContainerInterface;
 
 final class ElasticsearchAdapterFactory
