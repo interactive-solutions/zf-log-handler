@@ -48,8 +48,10 @@ final class ErrorListener implements ListenerAggregateInterface
      */
     public function handleErrorData(MvcEvent $event)
     {
-        if ($event->getParam('exception') instanceof Throwable) {
-            $this->service->handleException($event->getParam('exception'));
+        $exception = $event->getParam('exception');
+
+        if ($exception instanceof Throwable) {
+            $this->service->handleException($exception);
         }
     }
 }

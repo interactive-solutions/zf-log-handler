@@ -88,13 +88,11 @@ final class LogHandlerService implements LogHandlerServiceInterface
                     'headers' => $request->getHeaders()->toArray(),
                     'url'     => $request->getUriString(),
                     'body'    => $request->getContent(),
-                    'json'    => $this->getJsonFromBody($request->getContent()),
                     'query'   => $request->getQuery()->toArray(),
                 ],
                 'response'    => [
                     'headers'    => $response->getHeaders()->toArray(),
                     'body'       => $response->getContent(),
-                    'json'       => $this->getJsonFromBody($response->getContent()),
                     'statusCode' => $response->getStatusCode(),
                 ],
             ];
@@ -116,23 +114,6 @@ final class LogHandlerService implements LogHandlerServiceInterface
     public function getAdapters(): array
     {
         return $this->adapters;
-    }
-
-    /**
-     * Json decode a string if possible
-     *
-     * This cannot be typed if a body is a single digit
-     *
-     * @param mixed $body
-     * @return array|mixed
-     */
-    private function getJsonFromBody($body)
-    {
-        try {
-            return Json::decode($body, Json::TYPE_ARRAY);
-        } catch (RuntimeException $e) {
-            return [];
-        }
     }
 
     /**
