@@ -25,6 +25,16 @@ final class ElasticsearchOptions extends AbstractOptions
     /**
      * @var string
      */
+    protected $username;
+
+    /**
+     * @var string
+     */
+    protected $password;
+
+    /**
+     * @var string
+     */
     protected $prefix;
 
     /**
@@ -57,6 +67,38 @@ final class ElasticsearchOptions extends AbstractOptions
     public function setPort(int $port)
     {
         $this->port = $port;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername(string $username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
     }
 
     /**
