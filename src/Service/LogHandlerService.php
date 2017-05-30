@@ -121,13 +121,15 @@ final class LogHandlerService implements LogHandlerServiceInterface
     /**
      * Json decode a string if possible
      *
-     * @param string $string
+     * This cannot be typed if a body is a single digit
+     *
+     * @param mixed $body
      * @return array|mixed
      */
-    private function getJsonFromBody(string $string)
+    private function getJsonFromBody($body)
     {
         try {
-            return Json::decode($string, Json::TYPE_ARRAY);
+            return Json::decode($body, Json::TYPE_ARRAY);
         } catch (RuntimeException $e) {
             return [];
         }

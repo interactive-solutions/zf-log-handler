@@ -8,15 +8,13 @@ declare(strict_types=1);
 
 namespace InteractiveSolutions\ZfLogHandler\Listener;
 
-use InteractiveSolutions\ZfLogHandler\Options\LogHandlerOptions;
 use InteractiveSolutions\ZfLogHandler\Service\LogHandlerServiceInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
 use Zend\EventManager\ListenerAggregateTrait;
-use Zend\Http\Request;
-use Zend\Http\Response;
+use Zend\Http\Request as HttpRequest;
+use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
 
 final class RequestResponseDataListener implements ListenerAggregateInterface
 {
@@ -51,13 +49,17 @@ final class RequestResponseDataListener implements ListenerAggregateInterface
      */
     public function handleRequestResponseData(MvcEvent $event)
     {
-        /* @var Request $request */
+        /* @var HttpRequest $request */
         $request = $event->getRequest();
-        /* @var Response $response */
+        /* @var HttpResponse $response */
         $response = $event->getResponse();
 
         $routeMatch = $event->getRouteMatch();
-        
-        $this->service->handleRequestResponse($request, $response, $routeMatch);
+
+        // We currently only support http request/responses
+        // todo: add support for console requests too
+        if ($request instanceof HttpRequest && $response instanceof HttpResponse) {
+            $this->service->handleRequestResponse($request, $response, $routeMatch);
+        }
     }
 }
