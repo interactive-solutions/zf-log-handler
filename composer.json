@@ -1,5 +1,6 @@
 {
   "name": "interactive-solutions/zf-log-handler",
+  "license": "MIT",
   "description": "Interactive Solutions log handler",
   "minimum-stability": "dev",
   "authors": [
