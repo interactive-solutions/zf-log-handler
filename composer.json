@@ -2,6 +2,20 @@
   "name": "interactive-solutions/zf-log-handler",
   "description": "Interactive Solutions log handler",
   "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Erik Norgren",
+      "email": "erik.norgren@interactivesolutions.se"
+    },
+    {
+      "name": "Jonas Eriksson",
+      "email": "jonas.eriksson@interactivesolutions.se"
+    },
+    {
+      "name": "Antoine Hedgecock",
+      "email": "antoine.hedgecock@gmail.com"
+    }
+  ],
   "require": {
     "php": "^7.0.0",
     "ruflin/elastica": "~5.2"
