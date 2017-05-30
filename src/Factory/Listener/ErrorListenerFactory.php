@@ -8,21 +8,19 @@ declare(strict_types=1);
 
 namespace InteractiveSolutions\LogHandler\Factory\Listener;
 
-use InteractiveSolutions\LogHandler\Listener\RequestResponseDataListener;
+use InteractiveSolutions\LogHandler\Listener\ErrorListener;
 use InteractiveSolutions\LogHandler\Service\LogHandlerService;
 use Psr\Container\ContainerInterface;
 
-final class RequestResponseDataListenerFactory
+final class ErrorListenerFactory
 {
     /**
      * @param ContainerInterface $container
-     *
-     * @return RequestResponseDataListener
-     *
+     * @return ErrorListener
      * @throws \Psr\Container\ContainerExceptionInterface
      */
-    public function __invoke(ContainerInterface $container): RequestResponseDataListener
+    public function __invoke(ContainerInterface $container): ErrorListener
     {
-        return new RequestResponseDataListener($container->get(LogHandlerService::class));
+        return new ErrorListener($container->get(LogHandlerService::class));
     }
 }

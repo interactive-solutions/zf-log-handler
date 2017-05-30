@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace InteractiveSolutions\LogHandler\Service;
 
 use InteractiveSolutions\LogHandler\Adapter\AbstractAdapter;
-use InteractiveSolutions\LogHandler\Adapter\BlackHoleAdapter;
 use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
 use Throwable;
 use Zend\Http\Request;

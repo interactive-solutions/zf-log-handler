@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace InteractiveSolutions\LogHandler;
 
+use InteractiveSolutions\LogHandler\Listener\ErrorListener;
 use InteractiveSolutions\LogHandler\Listener\RequestResponseDataListener;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -35,9 +36,13 @@ class Module implements ConfigProviderInterface, AutoloaderProviderInterface
         $eventManager = $e->getApplication()->getEventManager();
         $sm           = $e->getApplication()->getServiceManager();
 
-        /* @var RequestResponseDataListener $logRequestResponseListener */
-        $logRequestResponseListener = $sm->get(RequestResponseDataListener::class);
-        $logRequestResponseListener->attach($eventManager);
+        /* @var RequestResponseDataListener $requestResponseListener */
+        $requestResponseListener = $sm->get(RequestResponseDataListener::class);
+        $requestResponseListener->attach($eventManager);
+
+        /* @var ErrorListener $errorListener */
+        $errorListener = $sm->get(ErrorListener::class);
+        $errorListener->attach($eventManager);
     }
 
     /**
