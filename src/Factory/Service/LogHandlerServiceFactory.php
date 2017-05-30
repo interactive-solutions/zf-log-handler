@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Factory\Service;
+namespace InteractiveSolutions\ZfLogHandler\Factory\Service;
 
-use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
-use InteractiveSolutions\LogHandler\Service\LogHandlerService;
+use InteractiveSolutions\ZfLogHandler\Options\LogHandlerOptions;
+use InteractiveSolutions\ZfLogHandler\Service\LogHandlerService;
 use Interop\Container\ContainerInterface;
 
 final class LogHandlerServiceFactory

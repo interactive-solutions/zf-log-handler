@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler;
+namespace InteractiveSolutions\ZfLogHandler;
 
-use InteractiveSolutions\LogHandler\Listener\ErrorListener;
-use InteractiveSolutions\LogHandler\Listener\RequestResponseDataListener;
+use InteractiveSolutions\ZfLogHandler\Listener\ErrorListener;
+use InteractiveSolutions\ZfLogHandler\Listener\RequestResponseDataListener;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;

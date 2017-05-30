@@ -4,9 +4,9 @@
  * @copyright Interactive Solutions
  */
 
-use InteractiveSolutions\LogHandler\Adapter\ElasticsearchAdapter;
-use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
-use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
+use InteractiveSolutions\ZfLogHandler\Adapter\ElasticsearchAdapter;
+use InteractiveSolutions\ZfLogHandler\Options\ElasticsearchOptions;
+use InteractiveSolutions\ZfLogHandler\Options\LogHandlerOptions;
 
 return [
     'interactive_solutions' => [

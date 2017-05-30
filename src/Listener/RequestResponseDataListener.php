@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Listener;
+namespace InteractiveSolutions\ZfLogHandler\Listener;
 
-use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
-use InteractiveSolutions\LogHandler\Service\LogHandlerServiceInterface;
+use InteractiveSolutions\ZfLogHandler\Options\LogHandlerOptions;
+use InteractiveSolutions\ZfLogHandler\Service\LogHandlerServiceInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
 use Zend\EventManager\ListenerAggregateTrait;

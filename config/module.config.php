@@ -1,19 +1,19 @@
 <?php
 
 use Elastica\Client;
-use InteractiveSolutions\LogHandler\Adapter\ElasticsearchAdapter;
-use InteractiveSolutions\LogHandler\Factory\Adapter\ElasticsearchAdapterFactory;
-use InteractiveSolutions\LogHandler\Factory\Client\ElasticaClientFactory;
-use InteractiveSolutions\LogHandler\Factory\Listener\ErrorListenerFactory;
-use InteractiveSolutions\LogHandler\Factory\Listener\RequestResponseDataListenerFactory;
-use InteractiveSolutions\LogHandler\Factory\Options\ElasticsearchOptionsFactory;
-use InteractiveSolutions\LogHandler\Factory\Options\LogHandlerOptionsFactory;
-use InteractiveSolutions\LogHandler\Factory\Service\LogHandlerServiceFactory;
-use InteractiveSolutions\LogHandler\Listener\ErrorListener;
-use InteractiveSolutions\LogHandler\Listener\RequestResponseDataListener;
-use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
-use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
-use InteractiveSolutions\LogHandler\Service\LogHandlerService;
+use InteractiveSolutions\ZfLogHandler\Adapter\ElasticsearchAdapter;
+use InteractiveSolutions\ZfLogHandler\Factory\Adapter\ElasticsearchAdapterFactory;
+use InteractiveSolutions\ZfLogHandler\Factory\Client\ElasticaClientFactory;
+use InteractiveSolutions\ZfLogHandler\Factory\Listener\ErrorListenerFactory;
+use InteractiveSolutions\ZfLogHandler\Factory\Listener\RequestResponseDataListenerFactory;
+use InteractiveSolutions\ZfLogHandler\Factory\Options\ElasticsearchOptionsFactory;
+use InteractiveSolutions\ZfLogHandler\Factory\Options\LogHandlerOptionsFactory;
+use InteractiveSolutions\ZfLogHandler\Factory\Service\LogHandlerServiceFactory;
+use InteractiveSolutions\ZfLogHandler\Listener\ErrorListener;
+use InteractiveSolutions\ZfLogHandler\Listener\RequestResponseDataListener;
+use InteractiveSolutions\ZfLogHandler\Options\ElasticsearchOptions;
+use InteractiveSolutions\ZfLogHandler\Options\LogHandlerOptions;
+use InteractiveSolutions\ZfLogHandler\Service\LogHandlerService;
 
 return [
     'service_manager' => [

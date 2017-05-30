@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Adapter;
+namespace InteractiveSolutions\ZfLogHandler\Adapter;
 
 use Elastica\Client;
 use Elastica\Document;
-use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
+use InteractiveSolutions\ZfLogHandler\Options\ElasticsearchOptions;
 
 final class ElasticsearchAdapter extends AbstractAdapter
 {

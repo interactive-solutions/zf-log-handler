@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Factory\Client;
+namespace InteractiveSolutions\ZfLogHandler\Factory\Client;
 
 use Elastica\Client;
-use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
+use InteractiveSolutions\ZfLogHandler\Options\ElasticsearchOptions;
 use Interop\Container\ContainerInterface;
 
 final class ElasticaClientFactory

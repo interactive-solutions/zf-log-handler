@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Options;
+namespace InteractiveSolutions\ZfLogHandler\Options;
 
 use Zend\Stdlib\AbstractOptions;
 

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Factory\Listener;
+namespace InteractiveSolutions\ZfLogHandler\Factory\Listener;
 
-use InteractiveSolutions\LogHandler\Listener\ErrorListener;
-use InteractiveSolutions\LogHandler\Service\LogHandlerService;
+use InteractiveSolutions\ZfLogHandler\Listener\ErrorListener;
+use InteractiveSolutions\ZfLogHandler\Service\LogHandlerService;
 use Psr\Container\ContainerInterface;
 
 final class ErrorListenerFactory

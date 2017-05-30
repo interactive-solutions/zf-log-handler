@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Factory\Options;
+namespace InteractiveSolutions\ZfLogHandler\Factory\Options;
 
-use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
+use InteractiveSolutions\ZfLogHandler\Options\ElasticsearchOptions;
 use Psr\Container\ContainerInterface;
 
 final class ElasticsearchOptionsFactory

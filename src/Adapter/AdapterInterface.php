@@ -5,7 +5,7 @@
  * @copyright Interactive Solutions
  */
 
-namespace InteractiveSolutions\LogHandler\Adapter;
+namespace InteractiveSolutions\ZfLogHandler\Adapter;
 
 interface AdapterInterface
 {

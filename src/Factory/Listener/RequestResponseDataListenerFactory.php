@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Factory\Listener;
+namespace InteractiveSolutions\ZfLogHandler\Factory\Listener;
 
-use InteractiveSolutions\LogHandler\Listener\RequestResponseDataListener;
-use InteractiveSolutions\LogHandler\Service\LogHandlerService;
+use InteractiveSolutions\ZfLogHandler\Listener\RequestResponseDataListener;
+use InteractiveSolutions\ZfLogHandler\Service\LogHandlerService;
 use Psr\Container\ContainerInterface;
 
 final class RequestResponseDataListenerFactory

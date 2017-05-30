@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Service;
+namespace InteractiveSolutions\ZfLogHandler\Service;
 
-use InteractiveSolutions\LogHandler\Adapter\AbstractAdapter;
-use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
+use InteractiveSolutions\ZfLogHandler\Adapter\AbstractAdapter;
+use InteractiveSolutions\ZfLogHandler\Options\LogHandlerOptions;
 use Throwable;
 use Zend\Http\Request;
 use Zend\Http\Response;

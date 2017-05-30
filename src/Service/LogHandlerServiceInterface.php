@@ -5,7 +5,7 @@
  * @copyright Interactive Solutions
  */
 
-namespace InteractiveSolutions\LogHandler\Service;
+namespace InteractiveSolutions\ZfLogHandler\Service;
 
 use Throwable;
 use Zend\Http\Request;

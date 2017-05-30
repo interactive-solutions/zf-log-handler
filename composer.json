@@ -21,7 +21,12 @@
     "php": "^7.0.0",
     "ruflin/elastica": "~5.2"
   },
-  "classmap": [
-    "./Module.php"
-  ]
+  "autoload": {
+    "psr-4": {
+      "InteractiveSolutions\\ZfLogHandler\\": "src/"
+    },
+    "classmap": [
+      "./Module.php"
+    ]
+  }
 }

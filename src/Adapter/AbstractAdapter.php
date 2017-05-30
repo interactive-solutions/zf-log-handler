@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Adapter;
+namespace InteractiveSolutions\ZfLogHandler\Adapter;
 
 abstract class AbstractAdapter implements AdapterInterface
 {

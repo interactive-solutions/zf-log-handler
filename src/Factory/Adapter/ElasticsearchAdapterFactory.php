@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\LogHandler\Factory\Adapter;
+namespace InteractiveSolutions\ZfLogHandler\Factory\Adapter;
 
 use Elastica\Client;
-use InteractiveSolutions\LogHandler\Adapter\ElasticsearchAdapter;
-use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
+use InteractiveSolutions\ZfLogHandler\Adapter\ElasticsearchAdapter;
+use InteractiveSolutions\ZfLogHandler\Options\ElasticsearchOptions;
 use Interop\Container\ContainerInterface;
 
 final class ElasticsearchAdapterFactory
