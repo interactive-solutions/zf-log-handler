@@ -14,6 +14,7 @@ use Throwable;
 use Zend\Http\Request;
 use Zend\Http\Response;
 use Zend\Mvc\Router\RouteMatch;
+use Exception;
 
 final class LogHandlerService implements LogHandlerServiceInterface
 {
@@ -63,7 +64,9 @@ final class LogHandlerService implements LogHandlerServiceInterface
 
         /* @var AbstractAdapter $adapter */
         foreach ($this->getAdapters() as $adapter) {
-            $adapter->write($data, 'errors');
+            try {
+                $adapter->write($data, 'errors');
+            } catch (Exception $e) {/*do nothing*/}
         }
     }
 
@@ -89,7 +92,9 @@ final class LogHandlerService implements LogHandlerServiceInterface
 
             /* @var AbstractAdapter $adapter */
             foreach ($this->adapters as $adapter) {
-                $adapter->write($data, 'http-access-log');
+                try {
+                    $adapter->write($data, 'http-access-log');
+                } catch (Exception $e) {/*do nothing*/}
             }
         }
     }
