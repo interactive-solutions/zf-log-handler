@@ -28,6 +28,11 @@ final class LogHandlerOptions extends AbstractOptions
     protected $adapters = [];
 
     /**
+     * @var string
+     */
+    protected $environment = 'dev';
+
+    /**
      * @return bool
      */
     public function isDebug(): bool
@@ -73,5 +78,21 @@ final class LogHandlerOptions extends AbstractOptions
     public function setAdapters($adapters)
     {
         $this->adapters = $adapters;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnvironment(): string
+    {
+        return $this->environment;
+    }
+
+    /**
+     * @param string $environment
+     */
+    public function setEnvironment(string $environment)
+    {
+        $this->environment = $environment;
     }
 }

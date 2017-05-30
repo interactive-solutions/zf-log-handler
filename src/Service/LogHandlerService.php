@@ -48,19 +48,21 @@ final class LogHandlerService implements LogHandlerServiceInterface
     {
         if ($exception instanceof Throwable) {
             $data = [
-                '@timestamp' => date(DATE_RFC3339),
-                'message'    => $exception->getMessage(),
-                'class'      => get_class($exception),
-                'stacktrace' => $exception->getTraceAsString(),
+                'environment' => $this->options->getEnvironment(),
+                '@timestamp'  => date(DATE_RFC3339),
+                'message'     => $exception->getMessage(),
+                'class'       => get_class($exception),
+                'stacktrace'  => $exception->getTraceAsString(),
             ];
 
             $this->recurseException($data, $exception->getPrevious());
         } else {
             $data = [
-                '@timestamp' => date(DATE_RFC3339),
-                'message'    => 'None exception error occurred',
-                'class'      => get_class($exception),
-                'payload'    => $exception,
+                'environment' => $this->options->getEnvironment(),
+                '@timestamp'  => date(DATE_RFC3339),
+                'message'     => 'None exception error occurred',
+                'class'       => get_class($exception),
+                'payload'     => $exception,
             ];
         }
 
@@ -81,14 +83,15 @@ final class LogHandlerService implements LogHandlerServiceInterface
     {
         if ($this->options->isDebug() || $this->isAlwaysLogRoute($routeMatch)) {
             $data = [
-                'request'  => [
+                'environment' => $this->options->getEnvironment(),
+                'request'     => [
                     'headers' => $request->getHeaders()->toArray(),
                     'url'     => $request->getUriString(),
                     'body'    => $request->getContent(),
                     'json'    => $this->getJsonFromBody($request->getContent()),
                     'query'   => $request->getQuery()->toArray(),
                 ],
-                'response' => [
+                'response'    => [
                     'headers'    => $response->getHeaders()->toArray(),
                     'body'       => $response->getContent(),
                     'json'       => $this->getJsonFromBody($response->getContent()),
