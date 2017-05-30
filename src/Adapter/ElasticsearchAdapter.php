@@ -39,7 +39,6 @@ final class ElasticsearchAdapter extends AbstractAdapter
      */
     public function write(array $data, string $type = null): bool
     {
-        // Make index configurable
         $index = $this->client->getIndex(sprintf('%s-%s', $this->options->getPrefix(), date('Y-m-d')));
         $type  = $index->getType($type);
 

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace InteractiveSolutions\LogHandler\Options;
 
-final class ElasticsearchOptions
+use Zend\Stdlib\AbstractOptions;
+
+final class ElasticsearchOptions extends AbstractOptions
 {
     /**
      * @var string

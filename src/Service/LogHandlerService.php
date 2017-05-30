@@ -18,6 +18,11 @@ use Zend\Mvc\Router\RouteMatch;
 final class LogHandlerService implements LogHandlerServiceInterface
 {
     /**
+     * @var array
+     */
+    private $adapters = [];
+
+    /**
      * @var LogHandlerOptions
      */
     private $options;
@@ -25,10 +30,12 @@ final class LogHandlerService implements LogHandlerServiceInterface
     /**
      * LogHandlerService constructor.
      * @param LogHandlerOptions $options
+     * @param array $adapters
      */
-    public function __construct(LogHandlerOptions $options)
+    public function __construct(LogHandlerOptions $options, array $adapters)
     {
-        $this->options = $options;
+        $this->options  = $options;
+        $this->adapters = $adapters;
     }
 
     /**
@@ -55,7 +62,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
         }
 
         /* @var AbstractAdapter $adapter */
-        foreach ($this->options->getAdapters() as $adapter) {
+        foreach ($this->getAdapters() as $adapter) {
             $adapter->write($data, 'errors');
         }
     }
@@ -81,7 +88,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
             ];
 
             /* @var AbstractAdapter $adapter */
-            foreach ($this->options->getAdapters() as $adapter) {
+            foreach ($this->adapters as $adapter) {
                 $adapter->write($data, 'http-access-log');
             }
         }
@@ -92,7 +99,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
      */
     public function getAdapters(): array
     {
-        return $this->options->getAdapters();
+        return $this->adapters;
     }
 
     /**
