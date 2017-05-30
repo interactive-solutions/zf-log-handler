@@ -1,0 +1,32 @@
+<?php
+/**
+ * @author Erik Norgren <erik.norgren@interactivesolutions.se>
+ * @copyright Interactive Solutions
+ */
+
+use InteractiveSolutions\LogHandler\Adapter\ElasticsearchAdapter;
+use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
+use InteractiveSolutions\LogHandler\Options\LogHandlerOptions;
+
+return [
+    'interactive_solutions' => [
+        'options' => [
+            LogHandlerOptions::class => [
+                'environment'     => 'dev',
+                'debug'           => true,
+                'adapters'        => [
+                    ElasticsearchAdapter::class,
+                ],
+                'alwaysLogRoutes' => [],
+            ],
+
+            ElasticsearchOptions::class => [
+                'host'     => 'localhost',
+                'port'     => 9200,
+                'username' => '',
+                'password' => '',
+                'prefix'   => '',
+            ],
+        ],
+    ],
+];
