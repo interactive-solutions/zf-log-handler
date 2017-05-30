@@ -6,19 +6,29 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\ErrorHandler\Factory\Client;
+namespace InteractiveSolutions\LogHandler\Factory\Client;
 
 use Elastica\Client;
+use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
 use Interop\Container\ContainerInterface;
 
 final class ElasticaClientFactory
 {
+    /**
+     * @param ContainerInterface $container
+     * @return Client
+     * @throws \Psr\Container\ContainerExceptionInterface
+     */
     public function __invoke(ContainerInterface $container): Client
     {
+        /* @var ElasticsearchOptions $options */
+        $options = $container->get(ElasticsearchOptions::class);
+
         return new Client([
-            'host' => '10.91.51.24',
-            'username' => '',
-            'password' => ''
+            'host'     => $options->getHost(),
+            'port'     => $options->getPort(),
+            'username' => $options->getUsername(),
+            'password' => $options->getPassword(),
         ]);
     }
 }

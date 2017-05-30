@@ -5,9 +5,16 @@
  * @copyright Interactive Solutions
  */
 
-namespace InteractiveSolutions\ErrorHandler\Adapter;
+namespace InteractiveSolutions\LogHandler\Adapter;
 
 interface AdapterInterface
 {
-    public function write(array $data): bool;
+    /**
+     * Write data to adapter
+     *
+     * @param array $data
+     * @param string|null $type
+     * @return bool
+     */
+    public function write(array $data, string $type = null): bool;
 }

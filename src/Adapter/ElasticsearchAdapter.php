@@ -6,10 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace InteractiveSolutions\ErrorHandler\Adapter;
+namespace InteractiveSolutions\LogHandler\Adapter;
 
 use Elastica\Client;
 use Elastica\Document;
+use InteractiveSolutions\LogHandler\Options\ElasticsearchOptions;
 
 final class ElasticsearchAdapter extends AbstractAdapter
 {
@@ -19,22 +20,33 @@ final class ElasticsearchAdapter extends AbstractAdapter
     private $client;
 
     /**
-     * @param Client $client
+     * @var ElasticsearchOptions
      */
-    public function __construct(Client $client)
+    private $options;
+
+    /**
+     * @param Client $client
+     * @param ElasticsearchOptions $options
+     */
+    public function __construct(Client $client, ElasticsearchOptions $options)
     {
-        $this->client = $client;
+        $this->client  = $client;
+        $this->options = $options;
     }
 
-    public function write(array $data): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function write(array $data, string $type = null): bool
     {
-        // Make index configurable
-        $index = $this->client->getIndex(sprintf('error-%s', date('Y-m-d')));
-        $type  = $index->getType('errors');
+        $index = $this->client->getIndex(sprintf('%s-%s', $this->options->getPrefix(), date('Y-m-d')));
+        $type  = $index->getType($type);
 
         $document = new Document();
         $document->setData($data);
 
         $type->addDocument($document);
+
+        return true;
     }
 }
