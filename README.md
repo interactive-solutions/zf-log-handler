@@ -2,6 +2,11 @@
 Utility library to log exception (with stacktrace) and requests/response details
 to configured adapters.
 
+## Request duration
+The duration will be part of the data sent to each adapter if the constant `START_TIME` is
+defined. If you wish to log the duration you should `define('START_TIME', microtime(true))`
+before the application is bootstrapped.
+
 ## Adapters
 All adapters must implement the `AdapterInterface`, the only provided adapter built into 
 this library is `ElasticsearchAdapter` which logs data to elasticsearch.

@@ -81,13 +81,18 @@ final class LogHandlerService implements LogHandlerServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function handleRequestResponse(Request $request, Response $response, RouteMatch $routeMatch = null)
-    {
+    public function handleRequestResponse(
+        Request $request,
+        Response $response,
+        RouteMatch $routeMatch = null,
+        float $duration = null
+    ) {
         if ($this->options->isDebug() || $this->isAlwaysLogRoute($routeMatch)) {
             $data = [
                 '@timestamp'  => date(DATE_RFC3339),
                 'host'        => $this->options->getHost(),
                 'environment' => $this->options->getEnvironment(),
+                'duration'    => $duration ?? 0.0,
                 'request'     => [
                     'headers'    => $request->getHeaders()->toString(),
                     'routeMatch' => $routeMatch ? $routeMatch->getMatchedRouteName() : '',

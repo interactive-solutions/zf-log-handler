@@ -27,8 +27,15 @@ interface LogHandlerServiceInterface
      * @param Request $request
      * @param Response $response
      * @param RouteMatch|null $routeMatch
+     * @param float|null $duration
+     * @return
      */
-    public function handleRequestResponse(Request $request, Response $response, RouteMatch $routeMatch = null);
+    public function handleRequestResponse(
+        Request $request,
+        Response $response,
+        RouteMatch $routeMatch = null,
+        float $duration = null
+    );
 
     /**
      * Returns a list of active adapters
