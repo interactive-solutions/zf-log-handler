@@ -83,6 +83,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
     {
         if ($this->options->isDebug() || $this->isAlwaysLogRoute($routeMatch)) {
             $data = [
+                '@timestamp'  => date(DATE_RFC3339),
                 'environment' => $this->options->getEnvironment(),
                 'request'     => [
                     'headers' => $request->getHeaders()->toArray(),

@@ -29,6 +29,7 @@ final class ElasticaClientFactory
             'port'     => $options->getPort(),
             'username' => $options->getUsername(),
             'password' => $options->getPassword(),
+            'timeout'  => 1,
         ]);
     }
 }
