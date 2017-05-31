@@ -20,18 +20,11 @@ final class ElasticsearchAdapter extends AbstractAdapter
     private $client;
 
     /**
-     * @var ElasticsearchOptions
-     */
-    private $options;
-
-    /**
      * @param Client $client
-     * @param ElasticsearchOptions $options
      */
-    public function __construct(Client $client, ElasticsearchOptions $options)
+    public function __construct(Client $client)
     {
         $this->client  = $client;
-        $this->options = $options;
     }
 
     /**
@@ -39,7 +32,7 @@ final class ElasticsearchAdapter extends AbstractAdapter
      */
     public function write(array $data, string $type = null): bool
     {
-        $index = $this->client->getIndex(sprintf('%s-%s', $this->options->getPrefix(), date('Y-m-d')));
+        $index = $this->client->getIndex(sprintf('http-logs-%s', date('Y-m-d')));
         $type  = $index->getType($type);
 
         $document = new Document();

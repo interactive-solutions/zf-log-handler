@@ -33,11 +33,6 @@ final class ElasticsearchOptions extends AbstractOptions
     protected $password;
 
     /**
-     * @var string
-     */
-    protected $prefix;
-
-    /**
      * @return string
      */
     public function getHost(): string
@@ -99,21 +94,5 @@ final class ElasticsearchOptions extends AbstractOptions
     public function setPassword(string $password)
     {
         $this->password = $password;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrefix(): string
-    {
-        return $this->prefix;
-    }
-
-    /**
-     * @param string $prefix
-     */
-    public function setPrefix(string $prefix)
-    {
-        $this->prefix = $prefix;
     }
 }

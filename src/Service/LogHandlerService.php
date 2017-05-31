@@ -48,8 +48,9 @@ final class LogHandlerService implements LogHandlerServiceInterface
     {
         if ($exception instanceof Throwable) {
             $data = [
-                'environment' => $this->options->getEnvironment(),
                 '@timestamp'  => date(DATE_RFC3339),
+                'environment' => $this->options->getEnvironment(),
+                'host'        => $this->options->getHost(),
                 'message'     => $exception->getMessage(),
                 'class'       => get_class($exception),
                 'stacktrace'  => $exception->getTraceAsString(),
@@ -58,8 +59,9 @@ final class LogHandlerService implements LogHandlerServiceInterface
             $this->recurseException($data, $exception->getPrevious());
         } else {
             $data = [
-                'environment' => $this->options->getEnvironment(),
                 '@timestamp'  => date(DATE_RFC3339),
+                'environment' => $this->options->getEnvironment(),
+                'host'        => $this->options->getHost(),
                 'message'     => 'None exception error occurred',
                 'class'       => get_class($exception),
                 'payload'     => $exception,
@@ -84,12 +86,14 @@ final class LogHandlerService implements LogHandlerServiceInterface
         if ($this->options->isDebug() || $this->isAlwaysLogRoute($routeMatch)) {
             $data = [
                 '@timestamp'  => date(DATE_RFC3339),
+                'host'        => $this->options->getHost(),
                 'environment' => $this->options->getEnvironment(),
                 'request'     => [
                     'headers' => $request->getHeaders()->toArray(),
                     'url'     => $request->getUriString(),
                     'body'    => $request->getContent(),
                     'query'   => $request->getQuery()->toArray(),
+                    'method'  => $request->getMethod(),
                 ],
                 'response'    => [
                     'headers'    => $response->getHeaders()->toArray(),
@@ -101,7 +105,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
             /* @var AbstractAdapter $adapter */
             foreach ($this->adapters as $adapter) {
                 try {
-                    $adapter->write($data, 'http-access-log');
+                    $adapter->write($data, 'requests');
                 } catch (Exception $e) {
                     // To prevent application from crashing
                 }

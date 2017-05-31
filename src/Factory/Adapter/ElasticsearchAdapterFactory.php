@@ -23,9 +23,7 @@ final class ElasticsearchAdapterFactory
     {
         /* @var Client $elasticaClient */
         $elasticaClient = $container->get(Client::class);
-        /* @var ElasticsearchOptions $options */
-        $options = $container->get(ElasticsearchOptions::class);
 
-        return new ElasticsearchAdapter($elasticaClient, $options);
+        return new ElasticsearchAdapter($elasticaClient);
     }
 }
