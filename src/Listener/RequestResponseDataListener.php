@@ -59,7 +59,7 @@ final class RequestResponseDataListener implements ListenerAggregateInterface
         // We currently only support http request/responses
         // todo: add support for console requests too
         if ($request instanceof HttpRequest && $response instanceof HttpResponse) {
-            $duration = defined('START_TIME') ? microtime(true) - START_TIME : null;
+            $duration = defined('START_TIME') ? (microtime(true) - START_TIME) * 1000 : null;
 
             $this->service->handleRequestResponse($request, $response, $routeMatch, $duration);
         }
