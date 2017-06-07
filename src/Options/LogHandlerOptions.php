@@ -25,6 +25,16 @@ final class LogHandlerOptions extends AbstractOptions
     /**
      * @var array
      */
+    protected $blurredKeys = ['password'];
+
+    /**
+     * @var string
+     */
+    protected $blurredKeysValue = '***FILTERED***';
+
+    /**
+     * @var array
+     */
     protected $adapters = [];
 
     /**
@@ -115,5 +125,37 @@ final class LogHandlerOptions extends AbstractOptions
     public function setHost(string $host)
     {
         $this->host = $host;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBlurredKeys(): array
+    {
+        return $this->blurredKeys;
+    }
+
+    /**
+     * @param array $blurredKeys
+     */
+    public function setBlurredKeys(array $blurredKeys)
+    {
+        $this->blurredKeys = $blurredKeys;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlurredKeysValue(): string
+    {
+        return $this->blurredKeysValue;
+    }
+
+    /**
+     * @param string $blurredKeysValue
+     */
+    public function setBlurredKeysValue(string $blurredKeysValue)
+    {
+        $this->blurredKeysValue = $blurredKeysValue;
     }
 }
