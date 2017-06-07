@@ -97,8 +97,8 @@ final class LogHandlerService implements LogHandlerServiceInterface
                     'headers'    => $request->getHeaders()->toString(),
                     'routeMatch' => $routeMatch ? $routeMatch->getMatchedRouteName() : '',
                     'url'        => $request->getUriString(),
-                    'body'       => $request->getContent(),
-                    'query'      => $request->getQuery()->toString(),
+                    'body'       => $this->blurKeywords($request->getContent()),
+                    'query'      => $this->blurKeywords($request->getQuery()->toString()),
                     'method'     => $request->getMethod(),
                 ],
                 'response'    => [
@@ -125,6 +125,40 @@ final class LogHandlerService implements LogHandlerServiceInterface
     public function getAdapters(): array
     {
         return $this->adapters;
+    }
+
+    /**
+     * Check if string contains keys that should be blurred out
+     * This will only check top-level
+     *
+     * @param string $body
+     * @return string
+     */
+    private function blurKeywords(string $body): string
+    {
+        try {
+            $isJson = true;
+            $bodyAsArray = Json::decode($body, true);
+        } catch (RuntimeException $e) {
+            $isJson = false;
+            parse_str($body, $bodyAsArray);
+        }
+
+        if (!is_array($bodyAsArray)) {
+            return $body;
+        }
+
+        foreach ($bodyAsArray as $key => $value) {
+            if (in_array($key, $this->options->getBlurredKeys(), false)) {
+                $bodyAsArray[$key] = $this->options->getBlurredKeysValue();
+            }
+        }
+
+        if ($isJson) {
+            return Json::encode($bodyAsArray);
+        }
+
+        return http_build_query($bodyAsArray);
     }
 
     /**

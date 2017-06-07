@@ -18,6 +18,10 @@ return [
                     ElasticsearchAdapter::class,
                 ],
                 'alwaysLogRoutes' => [],
+                'blurredKeys' => [
+                    'password'
+                ],
+                'blurredKeysValue' => '***FILTERED***'
             ],
 
             ElasticsearchOptions::class => [
