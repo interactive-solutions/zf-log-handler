@@ -54,7 +54,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
                 'message'     => $exception->getMessage(),
                 'class'       => get_class($exception),
                 'stacktrace'  => $exception->getTraceAsString(),
-                'context'     => $context
+                'context'     => json_encode($context)
             ];
 
             $this->recurseException($data, $exception->getPrevious());
@@ -66,7 +66,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
                 'message'     => 'None exception error occurred',
                 'class'       => get_class($exception),
                 'payload'     => $exception,
-                'context'     => $context
+                'context'     => json_encode($context)
             ];
         }
 
@@ -102,7 +102,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
                     'body'       => $response->getContent(),
                     'statusCode' => $response->getStatusCode(),
                 ],
-                'context' => $context
+                'context' => json_encode($context)
             ];
 
            $this->writeData($data, 'requests');
