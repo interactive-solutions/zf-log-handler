@@ -44,7 +44,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function handleException(Throwable $exception)
+    public function handleException(Throwable $exception, array $context = [])
     {
         if ($exception instanceof Throwable) {
             $data = [
@@ -54,6 +54,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
                 'message'     => $exception->getMessage(),
                 'class'       => get_class($exception),
                 'stacktrace'  => $exception->getTraceAsString(),
+                'context'     => $context
             ];
 
             $this->recurseException($data, $exception->getPrevious());
@@ -65,17 +66,11 @@ final class LogHandlerService implements LogHandlerServiceInterface
                 'message'     => 'None exception error occurred',
                 'class'       => get_class($exception),
                 'payload'     => $exception,
+                'context'     => $context
             ];
         }
 
-        /* @var AbstractAdapter $adapter */
-        foreach ($this->getAdapters() as $adapter) {
-            try {
-                $adapter->write($data, 'errors');
-            } catch (Exception $e) {
-                // Prevent application from crashing
-            }
-        }
+        $this->writeData($data, 'errors');
     }
 
     /**
@@ -85,7 +80,8 @@ final class LogHandlerService implements LogHandlerServiceInterface
         Request $request,
         Response $response,
         RouteMatch $routeMatch = null,
-        float $duration = null
+        float $duration = null,
+        array $context = []
     ) {
         if ($this->options->isDebug() || $this->isAlwaysLogRoute($routeMatch)) {
             $data = [
@@ -106,15 +102,27 @@ final class LogHandlerService implements LogHandlerServiceInterface
                     'body'       => $response->getContent(),
                     'statusCode' => $response->getStatusCode(),
                 ],
+                'context' => $context
             ];
 
-            /* @var AbstractAdapter $adapter */
-            foreach ($this->adapters as $adapter) {
-                try {
-                    $adapter->write($data, 'requests');
-                } catch (Exception $e) {
-                    // To prevent application from crashing
-                }
+           $this->writeData($data, 'requests');
+        }
+    }
+
+    /**
+     * Write the data to adapters
+     *
+     * @param array $data
+     * @param string $type
+     */
+    private function writeData(array $data, string $type)
+    {
+        /* @var AbstractAdapter $adapter */
+        foreach ($this->adapters as $adapter) {
+            try {
+                $adapter->write($data, $type);
+            } catch (Exception $e) {
+                // To prevent application from crashing
             }
         }
     }
