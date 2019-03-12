@@ -19,7 +19,7 @@
   ],
   "require": {
     "php": "^7.0.0",
-    "ruflin/elastica": "~5.2"
+    "ruflin/elastica": "~6.1"
   },
   "autoload": {
     "psr-4": {

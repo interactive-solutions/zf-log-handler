@@ -32,12 +32,11 @@ final class ElasticsearchAdapter extends AbstractAdapter
     public function write(array $data, string $type = 'requests'): bool
     {
         $index = $this->client->getIndex(sprintf('http-logs-%s', date('Y-m-d')));
-        $type  = $index->getType($type);
 
         $document = new Document();
         $document->setData($data);
 
-        $type->addDocument($document);
+        $index->getType($type)->addDocument($document);
 
         return true;
     }
