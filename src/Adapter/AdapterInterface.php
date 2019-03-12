@@ -13,8 +13,8 @@ interface AdapterInterface
      * Write data to adapter
      *
      * @param array $data
-     * @param string|null $type
+     * @param string $type
      * @return bool
      */
-    public function write(array $data, string $type = null): bool;
+    public function write(array $data, string $type = 'requests'): bool;
 }

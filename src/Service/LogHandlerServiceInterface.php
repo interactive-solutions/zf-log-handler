@@ -7,21 +7,12 @@
 
 namespace InteractiveSolutions\ZfLogHandler\Service;
 
-use Throwable;
 use Zend\Http\Request;
 use Zend\Http\Response;
 use Zend\Mvc\Router\RouteMatch;
 
 interface LogHandlerServiceInterface
 {
-    /**
-     * Handle and log exceptions
-     *
-     * @param Throwable $exception
-     * @param array $context
-     */
-    public function handleException(Throwable $exception, array $context = []);
-
     /**
      * Handle and log request/response details
      *

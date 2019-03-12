@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace InteractiveSolutions\ZfLogHandler;
 
-use InteractiveSolutions\ZfLogHandler\Listener\ErrorListener;
 use InteractiveSolutions\ZfLogHandler\Listener\RequestResponseDataListener;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -39,10 +38,6 @@ class Module implements ConfigProviderInterface, AutoloaderProviderInterface
         /* @var RequestResponseDataListener $requestResponseListener */
         $requestResponseListener = $sm->get(RequestResponseDataListener::class);
         $requestResponseListener->attach($eventManager);
-
-        /* @var ErrorListener $errorListener */
-        $errorListener = $sm->get(ErrorListener::class);
-        $errorListener->attach($eventManager);
     }
 
     /**

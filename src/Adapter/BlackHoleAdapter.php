@@ -10,7 +10,7 @@ namespace InteractiveSolutions\ZfLogHandler\Adapter;
 
 final class BlackHoleAdapter extends AbstractAdapter
 {
-    public function write(array $data, string $type = null): bool
+    public function write(array $data, string $type = 'requests'): bool
     {
         return true;
     }

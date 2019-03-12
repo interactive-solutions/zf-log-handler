@@ -10,7 +10,6 @@ namespace InteractiveSolutions\ZfLogHandler\Service;
 
 use InteractiveSolutions\ZfLogHandler\Adapter\AbstractAdapter;
 use InteractiveSolutions\ZfLogHandler\Options\LogHandlerOptions;
-use Throwable;
 use Zend\Http\Request;
 use Zend\Http\Response;
 use Zend\Json\Exception\RuntimeException;
@@ -39,38 +38,6 @@ final class LogHandlerService implements LogHandlerServiceInterface
     {
         $this->options  = $options;
         $this->adapters = $adapters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function handleException(Throwable $exception, array $context = [])
-    {
-        if ($exception instanceof Throwable) {
-            $data = [
-                '@timestamp'  => date(DATE_RFC3339),
-                'environment' => $this->options->getEnvironment(),
-                'host'        => $this->options->getHost(),
-                'message'     => $exception->getMessage(),
-                'class'       => get_class($exception),
-                'stacktrace'  => $exception->getTraceAsString(),
-                'context'     => json_encode($context)
-            ];
-
-            $this->recurseException($data, $exception->getPrevious());
-        } else {
-            $data = [
-                '@timestamp'  => date(DATE_RFC3339),
-                'environment' => $this->options->getEnvironment(),
-                'host'        => $this->options->getHost(),
-                'message'     => 'None exception error occurred',
-                'class'       => get_class($exception),
-                'payload'     => $exception,
-                'context'     => json_encode($context)
-            ];
-        }
-
-        $this->writeData($data, 'errors');
     }
 
     /**
@@ -105,7 +72,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
                 'context' => json_encode($context)
             ];
 
-           $this->writeData($data, 'requests');
+           $this->writeData($data);
         }
     }
 
@@ -115,7 +82,7 @@ final class LogHandlerService implements LogHandlerServiceInterface
      * @param array $data
      * @param string $type
      */
-    private function writeData(array $data, string $type)
+    private function writeData(array $data, string $type = 'requests')
     {
         /* @var AbstractAdapter $adapter */
         foreach ($this->adapters as $adapter) {
@@ -178,24 +145,5 @@ final class LogHandlerService implements LogHandlerServiceInterface
     private function isAlwaysLogRoute(RouteMatch $routeMatch = null): bool
     {
         return $routeMatch && in_array($routeMatch->getMatchedRouteName(), $this->options->getAlwaysLogRoutes(), true);
-    }
-
-    /**
-     * @param $data
-     * @param Throwable|null $exception
-     */
-    private function recurseException(&$data, Throwable $exception = null)
-    {
-        if ($exception === null) {
-            return;
-        }
-
-        $data['previous'] = [
-            'class'      => get_class($exception),
-            'message'    => $exception->getMessage(),
-            'stacktrace' => $exception->getTraceAsString(),
-        ];
-
-        $this->recurseException($data['previous'], $exception->getPrevious());
     }
 }

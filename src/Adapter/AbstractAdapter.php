@@ -10,5 +10,5 @@ namespace InteractiveSolutions\ZfLogHandler\Adapter;
 
 abstract class AbstractAdapter implements AdapterInterface
 {
-    abstract public function write(array $data, string $type = null): bool;
+    abstract public function write(array $data, string $type = 'requests'): bool;
 }

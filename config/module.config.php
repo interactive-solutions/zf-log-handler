@@ -4,12 +4,10 @@ use Elastica\Client;
 use InteractiveSolutions\ZfLogHandler\Adapter\ElasticsearchAdapter;
 use InteractiveSolutions\ZfLogHandler\Factory\Adapter\ElasticsearchAdapterFactory;
 use InteractiveSolutions\ZfLogHandler\Factory\Client\ElasticaClientFactory;
-use InteractiveSolutions\ZfLogHandler\Factory\Listener\ErrorListenerFactory;
 use InteractiveSolutions\ZfLogHandler\Factory\Listener\RequestResponseDataListenerFactory;
 use InteractiveSolutions\ZfLogHandler\Factory\Options\ElasticsearchOptionsFactory;
 use InteractiveSolutions\ZfLogHandler\Factory\Options\LogHandlerOptionsFactory;
 use InteractiveSolutions\ZfLogHandler\Factory\Service\LogHandlerServiceFactory;
-use InteractiveSolutions\ZfLogHandler\Listener\ErrorListener;
 use InteractiveSolutions\ZfLogHandler\Listener\RequestResponseDataListener;
 use InteractiveSolutions\ZfLogHandler\Options\ElasticsearchOptions;
 use InteractiveSolutions\ZfLogHandler\Options\LogHandlerOptions;
@@ -19,7 +17,6 @@ return [
     'service_manager' => [
         'factories' => [
             RequestResponseDataListener::class => RequestResponseDataListenerFactory::class,
-            ErrorListener::class               => ErrorListenerFactory::class,
 
             ElasticsearchAdapter::class => ElasticsearchAdapterFactory::class,
 

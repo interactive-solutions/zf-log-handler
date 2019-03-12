@@ -10,7 +10,6 @@ namespace InteractiveSolutions\ZfLogHandler\Adapter;
 
 use Elastica\Client;
 use Elastica\Document;
-use InteractiveSolutions\ZfLogHandler\Options\ElasticsearchOptions;
 
 final class ElasticsearchAdapter extends AbstractAdapter
 {
@@ -30,7 +29,7 @@ final class ElasticsearchAdapter extends AbstractAdapter
     /**
      * {@inheritdoc}
      */
-    public function write(array $data, string $type = null): bool
+    public function write(array $data, string $type = 'requests'): bool
     {
         $index = $this->client->getIndex(sprintf('http-logs-%s', date('Y-m-d')));
         $type  = $index->getType($type);
